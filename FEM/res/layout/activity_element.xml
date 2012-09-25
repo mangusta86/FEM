@@ -1,11 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+<Button
+    android:id="@+id/button0000"
+    android:layout_width="match_parent"
+    android:layout_height="269dp"
+    android:onClick="modella"
+    android:text="Button" />
+
 <TextView
-            android:id="@+id/prova"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    android:id="@+id/prova"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="aaaaaa"
+    android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </LinearLayout>
