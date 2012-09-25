@@ -2,13 +2,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
- 
- <TextView
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nome"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
     <EditText
         android:id="@+id/proName"
         android:layout_width="match_parent"
@@ -18,13 +18,13 @@
 
         <requestFocus />
     </EditText>
-   
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="base"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
     <EditText
         android:id="@+id/proBase"
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:text="Altezza"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
     <EditText
         android:id="@+id/proHeight"
         android:layout_width="match_parent"
