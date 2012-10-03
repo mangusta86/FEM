@@ -19,6 +19,13 @@
         <item>Carichi</item>
         <item>B.C.</item>
     </string-array>
+        <string-array name="modelArray2">
+        <item>Elem2enti</item>
+        <item>Profsdaili</item>
+        <item>Mateasdariali</item>
+        <item>Cariasdachi</item>
+        <item>Basd.C.</item>
+    </string-array>
 
     <string name="title_activity_add_element">AddElement</string>
     <string name="title_activity_add_profile">AddProfile</string>

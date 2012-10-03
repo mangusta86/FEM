@@ -7,17 +7,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class ModelActivity extends Activity implements
-		ModelList.OnHeadlineSelectedListener {
+		ModelList.OnHeadlineSelectedListener, ModelFragment.OnItemSelectedListener {
 
-	DBAdapter database=new DBAdapter(this);
+	public DBAdapter database=new DBAdapter(this);	
+	
 	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-
 		database.open();
+
+		
+		
 		
 		setContentView(R.layout.activity_main);
 
@@ -110,4 +112,9 @@ public class ModelActivity extends Activity implements
         }
     	return true;
 }
+
+	@Override
+	public void onItemSelected(int position) {
+		///implementare 
+	}
     }

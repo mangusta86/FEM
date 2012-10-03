@@ -1,103 +1,92 @@
 package com.example.fem;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 public class ModelFragment extends ListFragment {
+	OnItemSelectedListener mCallback;
+
 	final static String ARG_POSITION = "position";
 	int mCurrentPosition = -1;
-
-	ElementDBAdapter elementDBA = new ElementDBAdapter(this.getActivity())
-			.open();
-	ProfileDBAdapter profileDBA = new ProfileDBAdapter(this.getActivity())
-			.open();
-	MaterialDBAdapter materialDBA = new MaterialDBAdapter(this.getActivity())
-			.open();
-
 	
+	//public ElementDBAdapter elDBA=new ElementDBAdapter(getActivity());
+	
+	//ElementDBAdapter elDBA=new ElementDBAdapter(getActivity());
+	//ElementDBAdapter elHE=elDBA.open();
+	//MaterialDBAdapter matDBA=new MaterialDBAdapter(getActivity()).open();
+	//ProfileDBAdapter proDBA=new ProfileDBAdapter(getActivity()).open();
+
+	// The container Activity must implement this interface so the frag
+	// can deliver messages
+	public interface OnItemSelectedListener {
+		/** Called by HeadlinesFragment when a list item is selected */
+		public void onItemSelected(int position);
+	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
 
-		// If activity recreated (such as from screen rotate), restore
-		// the previous article selection set by onSaveInstanceState().
-		// This is primarily necessary when in the two-pane layout.
+		// This makes sure that the container activity has implemented
+		// the callback interface. If not, it throws an exception.
+		try {
+			mCallback = (OnItemSelectedListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.toString()
+					+ " must implement OnItemSelectedListener");
+		}
+	}
+	
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
 		if (savedInstanceState != null) {
 			mCurrentPosition = savedInstanceState.getInt(ARG_POSITION);
 		}
-
-		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_container, container, false);
+		
+		//tornato da 1 pane view... quindi bisogna ciclare sul valore
+		// Create an array adapter for the list view, using the
+		//if (mCurrentPosition==1)
+		setListAdapter(ArrayAdapter.createFromResource(getActivity(),
+				R.array.modelArray2,
+				android.R.layout.simple_list_item_activated_1));
+		//else
+		//	setListAdapter(ArrayAdapter.createFromResource(getActivity(),
+		//			R.array.modelArray,
+		//			android.R.layout.simple_list_item_activated_1));
 	}
 
 	@Override
 	public void onStart() {
 		super.onStart();
 
-		// During startup, check if there are arguments passed to the fragment.
-		// onStart is a good place to do this because the layout has already
-		// been
-		// applied to the fragment at this point so we can safely call the
-		// method
-		// below that sets the article text.
+		// When in two-pane layout, set the listview to highlight the selected
+		// list item
+		// (We do this during onStart because at the point the listview is
+		// available.)
 		Bundle args = getArguments();
 		if (args != null) {
 			// Set article based on argument passed in
 			updateArticleView(args.getInt(ARG_POSITION));
 		} else if (mCurrentPosition != -1) {
-			// Set article based on saved instance state defined during
-			// onCreateView
 			updateArticleView(mCurrentPosition);
 		}
-	}
-
-	// modificare con popolare la listview con gli elementi del database
-
-	public void updateArticleView(int position) {
-		ListView detail=(ListView) getActivity().findViewById(R.id.article);
 		
-		switch (position) {
-		case 0:
-			Cursor elCursor = elementDBA.getAllElements();
-			getActivity().startManagingCursor(elCursor);
-			// Now create a new list adapter bound to the cursor.
-			// SimpleListAdapter is designed for binding to a Cursor.
-			// Specify the row template to use (here, two columns bound to the two retrieved cursor rows).
-
-			
-			ListAdapter adapter = new SimpleCursorAdapter(this.getActivity(), // Context.
-					android.R.layout.two_line_list_item, elCursor, new String[] {"NAME","PROFILE"},
-					new int[] { android.R.id.text1, android.R.id.text2 });
-					// Pass in the cursor to bind to.
-					// Array of cursor columns to bind to.	
-					// Parallel array of which template objects to bind to those
-					// columns.
-					
-			// Bind to our new adapter.
-			setListAdapter(adapter);
-			break;
-		case 1:
-			Cursor proCursor = profileDBA.getAllProfiles();
-			
-			
+		
+		if (getFragmentManager().findFragmentById(R.id.article_fragment) != null) {
+			getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		}
-
-		//TextView article = (TextView) getActivity().findViewById(R.id.article);
-		//article.setText("aaaaa");
-		// Ipsum.Articles[position]
-		mCurrentPosition = position;
-		
 		
 	}
-
+	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -106,5 +95,54 @@ public class ModelFragment extends ListFragment {
 		// fragment
 		outState.putInt(ARG_POSITION, mCurrentPosition);
 	}
+	
+	public void updateArticleView(int position) {
+		
+		mCurrentPosition = position;
+		
+		//used in two pane mode to set the list
+		switch (mCurrentPosition){
+		case -1: setListAdapter(ArrayAdapter.createFromResource(getActivity(),
+				R.array.modelArray,
+				android.R.layout.simple_list_item_activated_1));
+		break;
+		case 1:
+			setListAdapter(ArrayAdapter.createFromResource(getActivity(),
+					R.array.modelArray,
+					android.R.layout.simple_list_item_activated_1));
+			break;
+		case 2:
+				setListAdapter(ArrayAdapter.createFromResource(getActivity(),
+						R.array.modelArray,
+						android.R.layout.simple_list_item_activated_1));
+				break;
+		case 3:
+			setListAdapter(ArrayAdapter.createFromResource(getActivity(),
+					R.array.modelArray,
+					android.R.layout.simple_list_item_activated_1));
+			break;
+		case 4:
+			setListAdapter(ArrayAdapter.createFromResource(getActivity(),
+					R.array.modelArray,
+					android.R.layout.simple_list_item_activated_1));
+			break;
+		case 5:
+			setListAdapter(ArrayAdapter.createFromResource(getActivity(),
+					R.array.modelArray,
+					android.R.layout.simple_list_item_activated_1));
+			break;
+		}
+		
+		
+	}
 
+
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		// Notify the parent activity of selected item
+		mCallback.onItemSelected(position);
+
+		// Set the item as checked to be highlighted when in two-pane layout
+		getListView().setItemChecked(position, true);
+	}
 }

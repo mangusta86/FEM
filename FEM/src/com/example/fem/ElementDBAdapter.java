@@ -117,8 +117,10 @@ public class ElementDBAdapter {
 	 */
 	public Cursor getAllElements() {
 
-		return this.mDb.query(DATABASE_TABLE, new String[] { ROW_ID, NAME,
-				PROFILE, MATERIAL }, null, null, null, null, null);
+		
+		//aggiungere alla String[] una colonna da return nel cursor ROW_ID
+		return this.mDb.query(DATABASE_TABLE, new String[] { NAME
+				}, null, null, null, null, null);
 	}
 
 	/**
@@ -151,7 +153,7 @@ public class ElementDBAdapter {
 	 * @param year
 	 * @return true if the note was successfully updated, false otherwise
 	 */
-	public boolean updateCar(long rowId, String name, String profile,
+	public boolean updateElement(long rowId, String name, String profile,
 			String material) {
 		ContentValues args = new ContentValues();
 		args.put(NAME, name);
