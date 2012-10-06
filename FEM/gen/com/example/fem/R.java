@@ -34,7 +34,7 @@ public final class R {
     }
     public static final class id {
         public static final int ModelArray=0x7f08001f;
-        public static final int article_fragment=0x7f080002;
+        public static final int article_fragment=0x7f080001;
         public static final int editText1=0x7f08000d;
         public static final int editX1=0x7f08000f;
         public static final int editX2=0x7f080011;
@@ -45,8 +45,8 @@ public final class R {
         public static final int elemAddMaterial=0x7f080018;
         public static final int elemAddProfile=0x7f080016;
         public static final int elemName=0x7f08000c;
-        public static final int fragment_container=0x7f080000;
-        public static final int headlines_fragment=0x7f080001;
+        public static final int fragment_container=0x7f080002;
+        public static final int headlines_fragment=0x7f080000;
         public static final int imageView1=0x7f080003;
         public static final int matName=0x7f080019;
         public static final int matPoisson=0x7f08001b;
@@ -71,11 +71,12 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int adapter_profile=0x7f030001;
-        public static final int add_element=0x7f030002;
-        public static final int add_material=0x7f030003;
-        public static final int add_profile_rect=0x7f030004;
-        public static final int array_model=0x7f030005;
+        public static final int activity_main2=0x7f030001;
+        public static final int adapter_profile=0x7f030002;
+        public static final int add_element=0x7f030003;
+        public static final int add_material=0x7f030004;
+        public static final int add_profile_rect=0x7f030005;
+        public static final int array_model=0x7f030006;
     }
     public static final class menu {
         public static final int activity_add_element=0x7f070000;
