@@ -12,11 +12,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class LoadDBAdapter {
 
 	public static final String ROW_ID = "_id";
-	public static final String NAME = "name";
-	public static final String YOUNG = "young";
-	public static final String POISSON = "poisson";
-	public static final String VALUE2 = "value2";
-	public static final String VALUE3 = "value3";
+	public static final String TYPE = "type";
+	public static final String CP1 = "cp1";
+	public static final String CP2 = "cp2";
+	public static final String DIRECTION = "direction";
+	public static final String INTENSITY = "intensity";
 
 	private static final String DATABASE_TABLE = "loads";
 
@@ -57,7 +57,7 @@ public class LoadDBAdapter {
 	}
 
 	/**
-	 * Open the cars database. If it cannot be opened, try to create a new
+	 * Open the loads database. If it cannot be opened, try to create a new
 	 * instance of the database. If it cannot be created, throw an exception to
 	 * signal the failure
 	 * 
@@ -80,62 +80,64 @@ public class LoadDBAdapter {
 	}
 
 	/**
-	 * Create a new car. If the car is successfully created return the new rowId
-	 * for that car, otherwise return a -1 to indicate failure.
+	 * Create a new load. If the load is successfully created return the new rowId
+	 * for that load, otherwise return a -1 to indicate failure.
 	 * 
-	 * @param name
-	 * @param model
-	 * @param year
-	 * @return rowId or -1 if failed sistemare questa parte
+	 * @param type
+	 * @param cp1
+	 * @param cp2
+	 * @param direction
+	 * @param intensity
+	 * @return rowId or -1 if failed
 	 */
 
-	public long createProfile(String name, String shape, Double value1,
-			Double value2, Double value3) {
+	public long createLoad(String type, Double cp1, Double cp2, String direction,
+			Double intensity) {
 		ContentValues initialValues = new ContentValues();
-		initialValues.put(NAME, name);
-		initialValues.put(YOUNG, shape);
-		initialValues.put(POISSON, value1);
-		initialValues.put(VALUE2, value2);
-		initialValues.put(VALUE3, value3);
+		initialValues.put(TYPE, type);
+		initialValues.put(CP1, cp1);
+		initialValues.put(CP2, cp2);
+		initialValues.put(DIRECTION, direction);
+		initialValues.put(INTENSITY, intensity);
 		return this.mDb.insert(DATABASE_TABLE, null, initialValues);
 	}
 
 	/**
-	 * Delete the car with the given rowId
+	 * Delete the load with the given rowId
 	 * 
 	 * @param rowId
 	 * @return true if deleted, false otherwise
 	 */
-	public boolean deleteProfile(long rowId) {
+	public boolean deleteLoad(long rowId) {
 
 		return this.mDb.delete(DATABASE_TABLE, ROW_ID + "=" + rowId, null) > 0; //$NON-NLS-1$
 	}
 
 	/**
-	 * Return a Cursor over the list of all cars in the database
+	 * Return a Cursor over the list of all loads in the database
 	 * 
-	 * @return Cursor over all cars sistemare
+	 * @return Cursor over all loads
 	 */
-	public Cursor getAllMaterials() {
-
-		return this.mDb.query(DATABASE_TABLE, new String[] { ROW_ID, NAME,
-				YOUNG, POISSON }, null, null, null, null, null);
+	public Cursor getAllLoads() {
+		
+		//	new String[] { ROW_ID, NAME,YOUNG, POISSON }
+		return this.mDb.query(DATABASE_TABLE, null, null, null, null, null, null);
 	}
 
 	/**
-	 * Return a Cursor positioned at the car that matches the given rowId
+	 * Return a Cursor positioned at the load that matches the given rowId
 	 * 
 	 * @param rowId
-	 * @return Cursor positioned to matching car, if found
+	 * @return Cursor positioned to matching load, if found
 	 * @throws SQLException
-	 *             if car could not be found/retrieved
+	 *             if load could not be found/retrieved
 	 */
-	public Cursor getCar(long rowId) throws SQLException {
-
+	public Cursor getLoad(long rowId) throws SQLException {
+		
+		//new String[] { ROW_ID, NAME,YOUNG, POISSON }
 		Cursor mCursor =
 
-		this.mDb.query(true, DATABASE_TABLE, new String[] { ROW_ID, NAME,
-				YOUNG, POISSON }, ROW_ID + "=" + rowId, null, null, null, null,
+		this.mDb.query(true, DATABASE_TABLE, null, ROW_ID + "=" + rowId, null, null, null, null,
 				null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
@@ -144,20 +146,24 @@ public class LoadDBAdapter {
 	}
 
 	/**
-	 * Update the car.
+	 * Update the load.
 	 * 
 	 * @param rowId
-	 * @param name
-	 * @param model
-	 * @param year
+	 * @param type
+	 * @param cp1
+	 * @param cp2
+	 * @param direction
+	 * @param intensity
 	 * @return true if the note was successfully updated, false otherwise
 	 */
-	public boolean updateCar(long rowId, String name, String shape,
-			String value1) {
+	public boolean updateLoad(long rowId,String type, Double cp1, Double cp2, String direction,
+			Double intensity) {
 		ContentValues args = new ContentValues();
-		args.put(NAME, name);
-		args.put(YOUNG, shape);
-		args.put(POISSON, value1);
+		args.put(TYPE, type);
+		args.put(CP1, cp1);
+		args.put(CP2, cp2);
+		args.put(DIRECTION, direction);
+		args.put(INTENSITY, intensity);
 
 		return this.mDb
 				.update(DATABASE_TABLE, args, ROW_ID + "=" + rowId, null) > 0;

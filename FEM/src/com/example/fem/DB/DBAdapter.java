@@ -1,9 +1,10 @@
-package com.example.fem;
+package com.example.fem.DB;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 
 import android.content.Context;
 import android.database.SQLException;
@@ -14,7 +15,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBAdapter {
 	public static final String DATABASE_NAME = "Model"; //$NON-NLS-1$
 
-	// ////
 	private static String DB_PATH = "/data/data/com.example.fem/databases/";
 
 	public static final int DATABASE_VERSION = 1;
@@ -24,21 +24,79 @@ public class DBAdapter {
 			+ " TEXT," //$NON-NLS-1$
 			+ ProfileDBAdapter.SHAPE
 			+ " TEXT," //$NON-NLS-1$
+			+ ProfileDBAdapter.JP
+			+ " FLOAT(53),"
+			+ ProfileDBAdapter.JX
+			+ " FLOAT(53),"
+			+ ProfileDBAdapter.JY
+			+ " FLOAT(53),"
+			+ ProfileDBAdapter.A
+			+ " FLOAT(53),"
 			+ ProfileDBAdapter.VALUE1
 			+ " FLOAT(53),"
 			+ ProfileDBAdapter.VALUE2
-			+ " FLOAT(53)," + ProfileDBAdapter.VALUE3 + " FLOAT(53)" + ");"; //$NON-NLS-1$ //$NON-NLS-2$
+			+ " FLOAT(53)," 
+			+ ProfileDBAdapter.VALUE3 
+			+ " FLOAT(53)," 
+			+ ProfileDBAdapter.VALUE4 
+			+ " FLOAT(53)," 
+			+ ProfileDBAdapter.VALUE5 
+			+ " FLOAT(53)" 
+			+ ");"; 
+			//$NON-NLS-1$ //$NON-NLS-2$
 
 	private static final String CREATE_TABLE_ELEMENTS = "create table elements (_id integer primary key autoincrement, " //$NON-NLS-1$
 			+ ElementDBAdapter.NAME + " TEXT," //$NON-NLS-1$
 			+ ElementDBAdapter.PROFILE + " TEXT," //$NON-NLS-1$
-			+ ElementDBAdapter.MATERIAL + " TEXT" + ");"; //$NON-NLS-1$  //$NON-NLS-2$
-
+			+ ElementDBAdapter.MATERIAL + " TEXT"  //$NON-NLS-1$  //$NON-NLS-2$
+			+ ElementDBAdapter.X1
+			+ " FLOAT(53),"
+			+ ElementDBAdapter.Y1
+			+ " FLOAT(53),"
+			+ ElementDBAdapter.Z1
+			+ " FLOAT(53),"
+			+ ElementDBAdapter.X2
+			+ " FLOAT(53),"
+			+ ElementDBAdapter.Y2
+			+ " FLOAT(53),"
+			+ ElementDBAdapter.Z2
+			+ " FLOAT(53)"
+			+ ");";
+	
 	private static final String CREATE_TABLE_MATERIALS = "create table materials (_id integer primary key autoincrement, " //$NON-NLS-1$
-			+ MaterialDBAdapter.NAME + " TEXT," //$NON-NLS-1$
-			+ MaterialDBAdapter.YOUNG + " TEXT," //$NON-NLS-1$
-			+ MaterialDBAdapter.POISSON + " TEXT" + ");"; //$NON-NLS-1$  //$NON-NLS-2$
+			+ MaterialDBAdapter.NAME 
+			+ " TEXT," //$NON-NLS-1$
+			+ MaterialDBAdapter.YOUNG 
+			+ " FLOAT(53)," //$NON-NLS-1$
+			+ MaterialDBAdapter.POISSON 
+			+ " FLOAT(53)," 
+			+ MaterialDBAdapter.DENSITY 
+			+ " FLOAT(53)"
+			+ ");"; //$NON-NLS-1$  //$NON-NLS-2$
 
+	private static final String CREATE_TABLE_LOADS = "create table loads (_id integer primary key autoincrement, " //$NON-NLS-1$
+			+ LoadDBAdapter.TYPE 
+			+ " TEXT," //$NON-NLS-1$
+			+ LoadDBAdapter.CP1 
+			+ " FLOAT(53)," //$NON-NLS-1$
+			+ LoadDBAdapter.CP2 
+			+ " FLOAT(53)," 
+			+ LoadDBAdapter.DIRECTION 
+			+ " TEXT," 
+			+ LoadDBAdapter.INTENSITY
+			+ " FLOAT(53)" 
+			+ ");"; //$NON-NLS-1$  //$NON-NLS-2$
+	
+	private static final String CREATE_TABLE_BCS = "create table bcs (_id integer primary key autoincrement, " //$NON-NLS-1$
+			+ BCDBAdapter.ELEMENT 
+			+ " TEXT," //$NON-NLS-1$
+			+ BCDBAdapter.NODE
+			+ " TEXT," //$NON-NLS-1$
+			+ BCDBAdapter.DISP
+			+ " TEXT," 
+			+ BCDBAdapter.ROT
+			+ " TEXT"
+			+ ");"; //$NON-NLS-1$  //$NON-NLS-2$
 	private final Context context;
 	private DatabaseHelper DBHelper;
 	private SQLiteDatabase db;
@@ -198,6 +256,8 @@ public class DBAdapter {
 			db.execSQL(CREATE_TABLE_PROFILES);
 			db.execSQL(CREATE_TABLE_ELEMENTS);
 			db.execSQL(CREATE_TABLE_MATERIALS);
+			db.execSQL(CREATE_TABLE_LOADS);
+			db.execSQL(CREATE_TABLE_BCS);
 		}
 
 		@Override

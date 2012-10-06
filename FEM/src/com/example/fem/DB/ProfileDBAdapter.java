@@ -1,4 +1,5 @@
-package com.example.fem;
+package com.example.fem.DB;
+
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,9 +13,15 @@ public class ProfileDBAdapter {
 	public static final String ROW_ID = "_id";
 	public static final String NAME = "name";
 	public static final String SHAPE = "shape";
+	public static final String JP = "jp";
+	public static final String JX = "jx";
+	public static final String JY = "jy";
+	public static final String A = "a";
 	public static final String VALUE1 = "value1";
 	public static final String VALUE2 = "value2";
 	public static final String VALUE3 = "value3";
+	public static final String VALUE4 = "value4";
+	public static final String VALUE5 = "value5";
 
 	private static final String DATABASE_TABLE = "profiles";
 
@@ -55,7 +62,7 @@ public class ProfileDBAdapter {
 	}
 
 	/**
-	 * Open the cars database. If it cannot be opened, try to create a new
+	 * Open the profiles database. If it cannot be opened, try to create a new
 	 * instance of the database. If it cannot be created, throw an exception to
 	 * signal the failure
 	 * 
@@ -78,28 +85,44 @@ public class ProfileDBAdapter {
 	}
 
 	/**
-	 * Create a new car. If the car is successfully created return the new rowId
+	 * Create a new profile. If the car is successfully created return the new rowId
 	 * for that car, otherwise return a -1 to indicate failure.
 	 * 
 	 * @param name
-	 * @param model
-	 * @param year
-	 * @return rowId or -1 if failed sistemare questa parte
+	 * @param shape
+	 * @param jp
+	 * @param jx
+	 * @param jy
+	 * @param a
+	 * @param value1
+	 * @param value2
+	 * @param value3
+	 * @param value4
+	 * @param value5
+	 * 
+	 * @return rowId or -1 if failed 
 	 */
 
-	public long createProfile(String name, String shape, Double value1,
-			Double value2, Double value3) {
+	public long createProfile(String name, String shape, Double jp, Double jx,
+			Double jy, Double a, Double value1, Double value2, Double value3,
+			 Double value4, Double value5) {
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(NAME, name);
 		initialValues.put(SHAPE, shape);
+		initialValues.put(JP, jp);
+		initialValues.put(JX, jx);
+		initialValues.put(JY, jy);
+		initialValues.put(A, a);
 		initialValues.put(VALUE1, value1);
 		initialValues.put(VALUE2, value2);
 		initialValues.put(VALUE3, value3);
+		initialValues.put(VALUE4, value4);
+		initialValues.put(VALUE5, value5);
 		return this.mDb.insert(DATABASE_TABLE, null, initialValues);
 	}
 
 	/**
-	 * Delete the car with the given rowId
+	 * Delete the profile with the given rowId
 	 * 
 	 * @param rowId
 	 * @return true if deleted, false otherwise
@@ -110,30 +133,29 @@ public class ProfileDBAdapter {
 	}
 
 	/**
-	 * Return a Cursor over the list of all cars in the database
+	 * Return a Cursor over the list of all profile in the database
 	 * 
-	 * @return Cursor over all cars sistemare
+	 * @return Cursor over all profiles
 	 */
 	public Cursor getAllProfiles() {
-
-		return this.mDb.query(DATABASE_TABLE, new String[] { ROW_ID, NAME,
-				SHAPE, VALUE1 }, null, null, null, null, null);
+		
+		//new String[] { ROW_ID, NAME,SHAPE, VALUE1 }
+		return this.mDb.query(DATABASE_TABLE, null, null, null, null, null, null);
 	}
 
 	/**
-	 * Return a Cursor positioned at the car that matches the given rowId
+	 * Return a Cursor positioned at the element that matches the given rowId
 	 * 
 	 * @param rowId
-	 * @return Cursor positioned to matching car, if found
+	 * @return Cursor positioned to matching element, if found
 	 * @throws SQLException
 	 *             if car could not be found/retrieved
 	 */
-	public Cursor getCar(long rowId) throws SQLException {
-
+	public Cursor getProfile(long rowId) throws SQLException {
+		// new String[] { ROW_ID, NAME,SHAPE, VALUE1 }
 		Cursor mCursor =
 
-		this.mDb.query(true, DATABASE_TABLE, new String[] { ROW_ID, NAME,
-				SHAPE, VALUE1 }, ROW_ID + "=" + rowId, null, null, null, null,
+		this.mDb.query(true, DATABASE_TABLE,null, ROW_ID + "=" + rowId, null, null, null, null,
 				null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
@@ -142,20 +164,37 @@ public class ProfileDBAdapter {
 	}
 
 	/**
-	 * Update the car.
+	 * Update the element.
 	 * 
-	 * @param rowId
 	 * @param name
-	 * @param model
-	 * @param year
+	 * @param shape
+	 * @param jp
+	 * @param jx
+	 * @param jy
+	 * @param a
+	 * @param value1
+	 * @param value2
+	 * @param value3
+	 * @param value4
+	 * @param value5
+	 * 
 	 * @return true if the note was successfully updated, false otherwise
 	 */
-	public boolean updateCar(long rowId, String name, String shape,
-			String value1) {
+	public boolean updateElement(long rowId, String name, String shape, Double jp, Double jx,
+			Double jy, Double a, Double value1, Double value2, Double value3,
+			 Double value4, Double value5) {
 		ContentValues args = new ContentValues();
 		args.put(NAME, name);
 		args.put(SHAPE, shape);
+		args.put(JP, jp);
+		args.put(JX, jx);
+		args.put(JY, jy);
+		args.put(A, a);
 		args.put(VALUE1, value1);
+		args.put(VALUE2, value2);
+		args.put(VALUE3, value3);
+		args.put(VALUE4, value4);
+		args.put(VALUE5, value5);
 
 		return this.mDb
 				.update(DATABASE_TABLE, args, ROW_ID + "=" + rowId, null) > 0;
