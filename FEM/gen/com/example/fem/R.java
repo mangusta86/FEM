@@ -21,16 +21,26 @@ public final class R {
         public static final int c=0x7f020003;
         public static final int cerchio=0x7f020004;
         public static final int circ=0x7f020005;
-        public static final int cls=0x7f020006;
-        public static final int ic_action_add=0x7f020007;
-        public static final int ic_action_delete=0x7f020008;
-        public static final int ic_action_edit=0x7f020009;
-        public static final int ic_action_save=0x7f02000a;
-        public static final int ic_action_search=0x7f02000b;
-        public static final int ic_launcher=0x7f02000c;
-        public static final int ic_menu_save=0x7f02000d;
-        public static final int rettangolo=0x7f02000e;
-        public static final int t=0x7f02000f;
+        public static final int circleshape=0x7f020006;
+        public static final int cls=0x7f020007;
+        public static final int cshape=0x7f020008;
+        public static final int hshape=0x7f020009;
+        public static final int ic_action_add=0x7f02000a;
+        public static final int ic_action_delete=0x7f02000b;
+        public static final int ic_action_edit=0x7f02000c;
+        public static final int ic_action_save=0x7f02000d;
+        public static final int ic_action_search=0x7f02000e;
+        public static final int ic_launcher=0x7f02000f;
+        public static final int ic_menu_save=0x7f020010;
+        public static final int md=0x7f020011;
+        public static final int pdist=0x7f020012;
+        public static final int pinned=0x7f020013;
+        public static final int recshape=0x7f020014;
+        public static final int rettangolo=0x7f020015;
+        public static final int slide=0x7f020016;
+        public static final int support=0x7f020017;
+        public static final int t=0x7f020018;
+        public static final int tshape=0x7f020019;
     }
     public static final class id {
         public static final int ModelArray=0x7f08001f;

@@ -1,11 +1,16 @@
 package com.example.fem;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.fem.cad.Profile;
+import com.example.fem.cad.ProfileAdapter;
 
 public class ModelFragment extends ListFragment {
 	
@@ -61,6 +66,13 @@ public class ModelFragment extends ListFragment {
 		// fragment
 		outState.putInt(ARG_POSITION, mCurrentPosition);
 	}*/
+	
+	public void updateProfileView(ArrayList<Profile> list) {
+		ProfileAdapter adapter= new ProfileAdapter(getActivity(),
+				R.layout.adapter_profile,list);
+		 setListAdapter(adapter);
+
+	}
 	
 	public void updateArticleView(String[] array) {
 	

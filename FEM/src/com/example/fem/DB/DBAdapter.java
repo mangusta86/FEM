@@ -46,9 +46,12 @@ public class DBAdapter {
 			//$NON-NLS-1$ //$NON-NLS-2$
 
 	private static final String CREATE_TABLE_ELEMENTS = "create table elements (_id integer primary key autoincrement, " //$NON-NLS-1$
-			+ ElementDBAdapter.NAME + " TEXT," //$NON-NLS-1$
-			+ ElementDBAdapter.PROFILE + " TEXT," //$NON-NLS-1$
-			+ ElementDBAdapter.MATERIAL + " TEXT"  //$NON-NLS-1$  //$NON-NLS-2$
+			+ ElementDBAdapter.NAME 
+			+ " TEXT," //$NON-NLS-1$
+			+ ElementDBAdapter.PROFILE 
+			+ " TEXT," //$NON-NLS-1$
+			+ ElementDBAdapter.MATERIAL 
+			+ " TEXT,"  //$NON-NLS-1$  //$NON-NLS-2$
 			+ ElementDBAdapter.X1
 			+ " FLOAT(53),"
 			+ ElementDBAdapter.Y1

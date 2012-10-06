@@ -26,22 +26,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ModelList"
-            android:label="@string/title_activity_set_property" >
-        </activity>
-        <activity
-            android:name=".MaterialList"
-            android:label="@string/title_activity_create_element" >
-        </activity>
-        <activity
-            android:name=".ElementList"
-            android:label="@string/title_modello_list" >
-        </activity>
-        <activity
-            android:name=".ProfileList"
-            android:label="@string/title_modello_detail" >
-        </activity>
-        <activity
             android:name=".AddElement"
             android:label="@string/title_activity_add_element" >
             <meta-data
@@ -61,22 +45,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.fem.ModelActivity" />
-        </activity>
-        <activity
-            android:name=".ItemListActivity"
-            android:label="@string/title_item_list" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ItemDetailActivity"
-            android:label="@string/title_item_detail" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ItemListActivity" />
         </activity>
     </application>
 
