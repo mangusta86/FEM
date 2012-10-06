@@ -27,7 +27,7 @@ public class ModelActivity extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		DBA.open2();
+		DBA.open();
 		elDBA.open();
 		matDBA.open();
 		proDBA.open();
@@ -79,13 +79,13 @@ public class ModelActivity extends Activity implements
 			fragDet.updateArticleView(Array);
 			break;
 		case 1:
-			Cursor C = matDBA.getAllMaterials();
-			String[] Array = getArrayList(C, 1);
+			 C = matDBA.getAllMaterials();
+			 Array = getArrayList(C, 1);
 			fragDet.updateArticleView(Array);
 			break;
 		case 2:
-			Cursor C = proDBA.getAllProfiles();
-			String[] Array = getArrayList(C, 1);
+			C = proDBA.getAllProfiles();
+			Array = getArrayList(C, 1);
 			fragDet.updateArticleView(Array);
 			break;
 		}
