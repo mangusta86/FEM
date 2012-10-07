@@ -3,6 +3,7 @@ package com.example.fem.cad;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,13 +44,13 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
                           tt.setText(o.getName());                            
                           }
                     if(bt != null){
-                          bt.setText(o.getA()+" m2  ");
+                          bt.setText(o.getA());
                     }
                     if(bb != null){
-                        bb.setText(o.getJx()+" m4  ");
+                        bb.setText(o.getJx());
                     }	
                     if(tb != null){
-                        tb.setText(o.getJy()+" m4  ");
+                        tb.setText(o.getJy());
                     }
                 
                     	

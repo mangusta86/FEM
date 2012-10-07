@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,12 +32,11 @@ public class ModelActivity extends Activity implements
 	public String[] bcList;
 	public Cursor C;
 	
-	
 	/**
 	 * 
 	 */
 	DBAdapter DBA = new DBAdapter(this);
-	ElementDBAdapter elDBA = new ElementDBAdapter(this);
+	public ElementDBAdapter elDBA = new ElementDBAdapter(this);
 	MaterialDBAdapter matDBA = new MaterialDBAdapter(this);
 	ProfileDBAdapter proDBA = new ProfileDBAdapter(this);
 	LoadDBAdapter loadDBA = new LoadDBAdapter(this);
@@ -54,7 +54,7 @@ public class ModelActivity extends Activity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
 			
-		openAllDatabases();
+		DBA.open2();
 		
 		//inflate the main layout
 		//implement three pane layout for landscape?
@@ -72,8 +72,11 @@ public class ModelActivity extends Activity implements
 	 * Initialise all public arrays used in the activity
 	 */
 	@Override
-	public void onStart() {
-		super.onStart();
+	public void onResume() {
+		super.onResume();
+		
+		openAllDatabases();
+		
 		C = elDBA.getAllElements();
 		elName = getArrayList(C, 1);
 		C = matDBA.getAllMaterials();
@@ -87,10 +90,21 @@ public class ModelActivity extends Activity implements
 	}
 	
 	@Override
+	public void onPause() {
+		super.onPause();
+		elDBA.close();
+		int i=0;
+		@SuppressWarnings("unused")
+		int c=9;
+		//closeAllDatabases();
+	}
+	
+	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		
 		closeAllDatabases();
+		DBA.close();
 	}
 
 	/**
@@ -116,7 +130,7 @@ public class ModelActivity extends Activity implements
 			break;
 		case 2:
 			
-			fragDet.updateArticleView(matName);
+			fragDet.updateArticleView(matDBA.getArrayMatName());
 			break;
 		case 3:
 			
@@ -142,6 +156,21 @@ public class ModelActivity extends Activity implements
 		
 		switch (modelItem){
 		case 0:		//Element
+	
+			closeAllDatabases();
+
+			Intent myIntent = new Intent(this, AddElement.class);
+			myIntent.putExtra("nItem",position);
+			startActivityForResult(myIntent, 0);
+			
+			
+			//startActivity(myIntent);
+			//AddElementFragment fragDet = AddElementFragment.newInstance(position);
+			
+			//fragDet.show(fragMAN, null);
+			
+			
+			
 			break;
 		case 1:		//Profile
 			break;
@@ -204,7 +233,7 @@ public class ModelActivity extends Activity implements
 		try {
 			if (C != null && C.moveToNext()) {
 				while (C.isAfterLast() == false) {
-					Array[i] = ("n" + C.getString(columnIndex));
+					Array[i] = C.getString(columnIndex);
 					C.moveToNext();
 					i = i + 1;
 				}
@@ -229,7 +258,7 @@ public class ModelActivity extends Activity implements
 	 * 
 	 */
 	public void openAllDatabases(){
-		DBA.open2();
+
 		elDBA.open();
 		matDBA.open();
 		proDBA.open();
@@ -248,7 +277,7 @@ public class ModelActivity extends Activity implements
 		proDBA.close();
 		loadDBA.close();
 		bcDBA.close();
-		DBA.close();
+		//
 	}
 	
 	/**
@@ -260,8 +289,6 @@ public class ModelActivity extends Activity implements
 		ArrayList<Profile> mArrayList = new ArrayList<Profile>();
 		Cursor mCursor=proDBA.getAllProfiles();
 		
-
-		int i=0;
 		for(mCursor.moveToFirst();!mCursor.isAfterLast();mCursor.moveToNext()) {
 	    // The Cursor is now set to the right position
 			Profile profile =new Profile();

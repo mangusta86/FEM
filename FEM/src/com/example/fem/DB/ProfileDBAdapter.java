@@ -140,7 +140,7 @@ public class ProfileDBAdapter {
 	public Cursor getAllProfiles() {
 		
 		//new String[] { ROW_ID, NAME,SHAPE, VALUE1 }
-		return this.mDb.query(DATABASE_TABLE, null, null, null, null, null, null);
+		return this.mDb.query(DATABASE_TABLE, null, null, null, null, null, ROW_ID +" ASC");
 	}
 
 	/**

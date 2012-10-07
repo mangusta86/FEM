@@ -66,9 +66,9 @@ public class MaterialDBAdapter {
 	 *             if the database could be neither opened or created
 	 */
 	public MaterialDBAdapter open() throws SQLException {
-		this.mDbHelper = new DatabaseHelper(this.mCtx);
-		this.mDb = this.mDbHelper.getWritableDatabase();
-		return this;
+			this.mDbHelper = new DatabaseHelper(this.mCtx);
+			this.mDb = this.mDbHelper.getWritableDatabase();
+			return this;
 	}
 
 	/**
@@ -163,4 +163,24 @@ public class MaterialDBAdapter {
 		return this.mDb
 				.update(DATABASE_TABLE, args, ROW_ID + "=" + rowId, null) > 0;
 	}
+	
+	public String[] getArrayMatName() {
+		
+		Cursor C = this.mDb.query(DATABASE_TABLE, new String[]{ROW_ID, NAME} ,
+				null, null, null, null, ROW_ID +" ASC");
+					
+		int i = 0;
+		String[] matName = new String[C.getCount()];
+		if (C != null && C.moveToNext()) {
+				while (C.isAfterLast() == false) {
+					matName[i] = C.getString(1);
+					C.moveToNext();
+					i = i + 1;
+				}
+		}
+				C.close();
+
+		return matName;
+	}
+	
 }

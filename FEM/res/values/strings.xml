@@ -32,5 +32,7 @@
     <string name="title_activity_add_material">AddMaterial</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="title_item_list">Items</string>
+    <string name="unit_m2">m<sup>2</sup></string>
+    <string name="unit_m4">m<sup>4</sup></string>
 
 </resources>
