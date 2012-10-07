@@ -2,7 +2,6 @@ package com.example.fem.cad;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ import com.example.fem.R;
 public class ProfileAdapter extends ArrayAdapter<Profile> {
 
     private ArrayList<Profile> items;
-    private Context context; 
+ //   private Context context; 
     
     public ProfileAdapter(Context context, int textViewResourceId, ArrayList<Profile> items) {
             super(context, textViewResourceId, items);
@@ -27,10 +26,12 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
     public View getView(int position, View convertView, ViewGroup parent) {
     	
             View v = convertView;
-            if (v == null) {
-                LayoutInflater vi = ((Activity)context).getLayoutInflater();
+            
+            	
+            	  LayoutInflater vi = LayoutInflater.from(getContext());
+              //   LayoutInflater vi = ((Activity)context).getLayoutInflater();
                 v = vi.inflate(R.layout.adapter_profile, null);
-            }
+            
             Profile o = items.get(position);
             if (o != null) {
                     TextView tt = (TextView) v.findViewById(R.id.textView1);
@@ -50,19 +51,18 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
                     if(tb != null){
                         tb.setText(o.getJy()+" m4  ");
                     }
-                    if(iv != null){
-                    	String shape=o.getShape();
-                    	if (shape=="rectangle"){
-              
+                
+                    	
+                    	if (o.isProRectangle()){
                     		iv.setImageResource(R.drawable.recshape);}
-                    
-                    	if (shape=="circle"){
+                    	
+                    	if (o.isProCircle()){
                     		iv.setImageResource(R.drawable.circleshape);}
-              
-                    	if (shape=="cshape"){
+                    	
+                    	if (o.isProCShape()){
                     		iv.setImageResource(R.drawable.cshape);
                     	}
-                    }
+                    
             }
             return v;
     }

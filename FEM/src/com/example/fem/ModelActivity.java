@@ -27,6 +27,8 @@ public class ModelActivity extends Activity implements
 	public String[] elName;
 	public String[] matName;
 	public String[] proName;
+	public String[] loadList;
+	public String[] bcList;
 	public Cursor C;
 	
 	
@@ -78,6 +80,10 @@ public class ModelActivity extends Activity implements
 		matName = getArrayList(C, 1);
 		C = proDBA.getAllProfiles();
 		proName = getArrayList(C, 1);
+		C = loadDBA.getAllLoads();
+		loadList = getArrayList(C, 1);
+		C = bcDBA.getAllBCs();
+		bcList = getArrayList(C, 1);
 	}
 	
 	@Override
@@ -113,14 +119,12 @@ public class ModelActivity extends Activity implements
 			fragDet.updateArticleView(matName);
 			break;
 		case 3:
-			C = loadDBA.getAllLoads();
-			String[] Array = getArrayList(C, 1);
-			fragDet.updateArticleView(Array);
+			
+			fragDet.updateArticleView(loadList);
 			break;
 		case 4:
-			C = bcDBA.getAllBCs();
-			Array = getArrayList(C, 1);
-			fragDet.updateArticleView(Array);
+
+			fragDet.updateArticleView(bcList);
 			break;
 		}
 		menuLeft=position;
@@ -252,13 +256,15 @@ public class ModelActivity extends Activity implements
 	 * @return arraylist
 	 */
 	public ArrayList<Profile> profileCursorToList(){
-	
+
 		ArrayList<Profile> mArrayList = new ArrayList<Profile>();
 		Cursor mCursor=proDBA.getAllProfiles();
-		Profile profile =new Profile();
-	
-		for(mCursor.moveToFirst(); !mCursor.isAfterLast(); mCursor.moveToNext()) {
+		
+
+		int i=0;
+		for(mCursor.moveToFirst();!mCursor.isAfterLast();mCursor.moveToNext()) {
 	    // The Cursor is now set to the right position
+			Profile profile =new Profile();
 			profile.setName(mCursor.getString(1));
 			profile.setShape(mCursor.getString(2));
 			profile.setJx(mCursor.getString(4));

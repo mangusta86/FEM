@@ -52,4 +52,19 @@ public class Profile {
 	public void setA(String A) {
 		this.A = A;
 	}
+	public boolean isProRectangle(){
+		if (this.Shape.equalsIgnoreCase("rectangle"))
+			return true;
+		else return false;		
+	}
+	public boolean isProCircle(){
+		if (this.Shape.equalsIgnoreCase("circle"))
+			return true;
+		else return false;		
+	}
+	public boolean isProCShape(){
+		if (this.Shape.equalsIgnoreCase("cshape"))
+			return true;
+		else return false;		
+	}
 }
