@@ -14,6 +14,10 @@ public class Element {
 	private Double Z2;
 	
 	public Element(Cursor c){
+<<<<<<< HEAD
+=======
+		if (c.moveToFirst()){
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
 		if (!c.isNull(1))
 			this.setName(c.getString(1));
 		if (!c.isNull(2))
@@ -32,7 +36,11 @@ public class Element {
 			this.setY2(c.getString(8));
 		if (!c.isNull(9))
 			this.setZ2(c.getString(9));
+<<<<<<< HEAD
 		
+=======
+		}
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
 	}
 	
 	public void setName(String name){

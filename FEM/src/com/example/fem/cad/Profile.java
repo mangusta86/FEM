@@ -1,9 +1,17 @@
 package com.example.fem.cad;
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
 import android.database.Cursor;
 
 public class Profile {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
 	private String NAME = "";
 	private String SHAPE = "";
 	private Double JP;
@@ -200,19 +208,29 @@ public class Profile {
 	
 	public boolean isProRectangle(){
 		if (this.SHAPE.equalsIgnoreCase("rectangle"))
+<<<<<<< HEAD
 
+=======
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
 			return true;
 		else return false;		
 	}
 	public boolean isProCircle(){
+<<<<<<< HEAD
 
 		if (this.SHAPE.equalsIgnoreCase("circle"))
 
+=======
+		if (this.SHAPE.equalsIgnoreCase("circle"))
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
 			return true;
 		else return false;		
 	}
 	public boolean isProCShape(){
+<<<<<<< HEAD
 
+=======
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
 		if (this.SHAPE.equalsIgnoreCase("cshape"))
 			return true;
 		else return false;		
