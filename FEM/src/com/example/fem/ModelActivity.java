@@ -84,9 +84,15 @@ public class ModelActivity extends Activity implements
 		C = proDBA.getAllProfiles();
 		proName = getArrayList(C, 1);
 		C = loadDBA.getAllLoads();
+<<<<<<< HEAD
 		loadList = getArrayList(C, 1);
 		C = bcDBA.getAllBCs();
 		bcList = getArrayList(C, 1);
+=======
+		loadList = getArrayList(C, 0);
+		C = bcDBA.getAllBCs();
+		bcList = getArrayList(C, 0);
+>>>>>>> other stuff
 	}
 	
 	@Override
@@ -156,11 +162,15 @@ public class ModelActivity extends Activity implements
 		
 		switch (modelItem){
 		case 0:		//Element
+<<<<<<< HEAD
 	
+=======
+>>>>>>> other stuff
 			closeAllDatabases();
 
 			Intent myIntent = new Intent(this, AddElement.class);
 			myIntent.putExtra("nItem",position);
+<<<<<<< HEAD
 			startActivityForResult(myIntent, 0);
 			
 			
@@ -176,6 +186,30 @@ public class ModelActivity extends Activity implements
 			break;
 		case 2:		//Material
 			break;
+=======
+			startActivityForResult(myIntent, 0);						
+						
+			break;
+			
+		case 1:		//Profile
+			closeAllDatabases();
+
+			Intent myIntent2 = new Intent(this, AddProfile.class);
+			myIntent2.putExtra("nItem",position);
+			startActivityForResult(myIntent2, 0);
+			
+			break;
+			
+		case 2:		//Material
+			
+			closeAllDatabases();
+
+			Intent myIntent3 = new Intent(this, AddMaterial.class);
+			myIntent3.putExtra("nItem",position);
+			startActivityForResult(myIntent3, 0);
+			
+			break;
+>>>>>>> other stuff
 		case 3:		//Loads
 			break;
 		case 4:		//BCs

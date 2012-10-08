@@ -3,7 +3,10 @@ package com.example.fem.cad;
 import java.util.ArrayList;
 
 import android.content.Context;
+<<<<<<< HEAD
 import android.text.Html;
+=======
+>>>>>>> other stuff
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +47,7 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
                           tt.setText(o.getName());                            
                           }
                     if(bt != null){
+<<<<<<< HEAD
                           bt.setText(o.getA());
                     }
                     if(bb != null){
@@ -51,6 +55,15 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
                     }	
                     if(tb != null){
                         tb.setText(o.getJy());
+=======
+                          bt.setText(o.getStringA());
+                    }
+                    if(bb != null){
+                        bb.setText(o.getStringJx());
+                    }	
+                    if(tb != null){
+                        tb.setText(o.getStringJy());
+>>>>>>> other stuff
                     }
                 
                     	

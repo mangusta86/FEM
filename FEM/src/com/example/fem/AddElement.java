@@ -27,15 +27,30 @@ public class AddElement extends Activity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         mNum = intent.getIntExtra("nItem",-1);
+<<<<<<< HEAD
         		
+=======
+        Long pp=(long) mNum+1;		
+>>>>>>> other stuff
         setContentView(R.layout.add_element);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         elDBA.open();
         matDBA.open();
         proDBA.open();
+<<<<<<< HEAD
         Cursor C = elDBA.getElement(mNum);
         Element element=new Element(C);
         
+=======
+        Cursor elC = elDBA.getElement(pp);
+       // C.moveToFirst();
+        Element element=new Element(elC);
+        elC.close();
+        
+        String[] matName=matDBA.getArrayMatName();
+        
+        String[] proName=proDBA.getArrayProName();
+>>>>>>> other stuff
         
         
         //
@@ -66,17 +81,28 @@ public class AddElement extends Activity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
         		this,
         		android.R.layout.simple_spinner_item,
+<<<<<<< HEAD
         		new String[]{"mat1","pluto","paperino","topolino"}
         		);            
         String myString = element.getMaterial(); 
         int spinnerPosition = adapter.getPosition(myString);
         spinnerMat.setSelection(spinnerPosition);
         spinnerMat.setAdapter(adapter);
+=======
+        		matName
+        		);            
+        String myString = element.getMaterial(); 
+        int spinnerPosition = adapter.getPosition(myString);
+       
+        spinnerMat.setAdapter(adapter);
+        spinnerMat.setSelection(spinnerPosition);
+>>>>>>> other stuff
         
         Spinner spinnerPro = (Spinner)findViewById(R.id.spinner2);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
         		this,
         		android.R.layout.simple_spinner_item,
+<<<<<<< HEAD
         		new String[]{"pippo","pro2","pro1","pro3"}
         		);
         String myString2 = element.getProfile(); 
@@ -84,6 +110,15 @@ public class AddElement extends Activity {
         spinnerMat.setSelection(spinnerPosition2);
         spinnerPro.setAdapter(adapter2); 
         
+=======
+        		proName
+        		);
+        String myString2 = element.getProfile(); 
+        int spinnerPosition2 = adapter2.getPosition(myString2);
+
+        spinnerPro.setAdapter(adapter2); 
+        spinnerPro.setSelection(spinnerPosition2);
+>>>>>>> other stuff
     }
     
     @Override
