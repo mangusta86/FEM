@@ -199,4 +199,27 @@ public class ProfileDBAdapter {
 		return this.mDb
 				.update(DATABASE_TABLE, args, ROW_ID + "=" + rowId, null) > 0;
 	}
+	/**
+	 * Return a String[] with all the profile names
+	 * 
+	 * @return String[] with all the profile names, if found
+	 */
+public String[] getArrayProName() {
+		
+		Cursor C = this.mDb.query(DATABASE_TABLE, new String[]{ROW_ID, NAME} ,
+				null, null, null, null, ROW_ID +" ASC");
+					
+		int i = 0;
+		String[] proName = new String[C.getCount()];
+		if (C != null && C.moveToNext()) {
+				while (C.isAfterLast() == false) {
+					proName[i] = C.getString(1);
+					C.moveToNext();
+					i = i + 1;
+				}
+		}
+				C.close();
+
+		return proName;
+	}
 }
