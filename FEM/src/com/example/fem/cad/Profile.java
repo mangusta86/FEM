@@ -1,7 +1,12 @@
 package com.example.fem.cad;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
 =======
+=======
+			
+import android.database.Cursor;
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
 
 >>>>>>> implemented new constructor from cursor to populate the classes... (and
 import android.database.Cursor;
@@ -9,8 +14,26 @@ import android.database.Cursor;
 public class Profile {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
+=======
+<<<<<<< Updated upstream
+
+	private String NAME = "";
+	private String SHAPE = "";
+	private Double JP;
+	private Double JX;
+	private Double JY;
+	private Double A;
+	private Double VALUE1;
+	private Double VALUE2;
+	private Double VALUE3;
+	private Double VALUE4;
+	private Double VALUE5;
+
+=======
 >>>>>>> implemented new constructor from cursor to populate the classes... (and
 	private String NAME = "";
 	private String SHAPE = "";
@@ -24,6 +47,7 @@ public class Profile {
 	private Double VALUE4;
 	private Double VALUE5;
 
+>>>>>>> Stashed changes
 	public Profile(){
 		
 	}
@@ -98,6 +122,7 @@ public class Profile {
 	}
 	public Double getDoubleJx(){
 		return this.JX;
+<<<<<<< Updated upstream
 	}
 	
 	
@@ -123,6 +148,33 @@ public class Profile {
 		this.A=Double.valueOf(a);
 	}
 	
+=======
+	}
+	
+	
+	public void setJy(Double jy){
+		this.JY=jy;
+	}
+	public void setJy(String jy){
+		this.JY=Double.valueOf(jy);
+	}
+	
+	public String getStringJy(){
+		return String.valueOf(this.JY);
+	}
+	public Double getDoubleJy(){
+		return this.JY;
+	}
+	
+	
+	public void setA(Double a){
+		this.A=a;
+	}
+	public void setA(String a){
+		this.A=Double.valueOf(a);
+	}
+	
+>>>>>>> Stashed changes
 	public String getStringA(){
 		return String.valueOf(this.A);
 	}
@@ -209,27 +261,51 @@ public class Profile {
 	public boolean isProRectangle(){
 		if (this.SHAPE.equalsIgnoreCase("rectangle"))
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
+=======
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 >>>>>>> implemented new constructor from cursor to populate the classes... (and
 			return true;
 		else return false;		
 	}
 	public boolean isProCircle(){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if (this.SHAPE.equalsIgnoreCase("circle"))
 
 =======
 		if (this.SHAPE.equalsIgnoreCase("circle"))
 >>>>>>> implemented new constructor from cursor to populate the classes... (and
+=======
+<<<<<<< Updated upstream
+		if (this.SHAPE.equalsIgnoreCase("circle"))
+=======
+
+		if (this.SHAPE.equalsIgnoreCase("circle"))
+
+>>>>>>> Stashed changes
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
 			return true;
 		else return false;		
 	}
 	public boolean isProCShape(){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+>>>>>>> implemented new constructor from cursor to populate the classes... (and
+=======
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 >>>>>>> implemented new constructor from cursor to populate the classes... (and
 		if (this.SHAPE.equalsIgnoreCase("cshape"))
 			return true;
