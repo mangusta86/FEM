@@ -27,8 +27,8 @@ public class AddElement extends Activity implements OnItemSelectedListener {
 	public Element element = new Element();
 	public String[] matName;
 	public String[] proName;
-	public long selectedMAT;
-	public long selectedPRO;
+	public String selectedMAT;
+	public String selectedPRO;
 
 	ElementDBAdapter elDBA = new ElementDBAdapter(this);
 	MaterialDBAdapter matDBA = new MaterialDBAdapter(this);
@@ -61,7 +61,11 @@ public class AddElement extends Activity implements OnItemSelectedListener {
 		EditText Z2 = (EditText) findViewById(R.id.editZ2);
 		Spinner spinnerMat = (Spinner) findViewById(R.id.spinner2);
 		Spinner spinnerPro = (Spinner) findViewById(R.id.spinner1);
-
+		
+		spinnerMat.setOnItemSelectedListener(this);
+		spinnerPro.setOnItemSelectedListener(this);
+		
+		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, matName);
 
@@ -110,7 +114,14 @@ public class AddElement extends Activity implements OnItemSelectedListener {
 			spinnerPro.setSelection(spinnerPosition2);
 
 		}
-
+	}
+	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		matDBA.close();
+		proDBA.close();
+		elDBA.close();
 	}
 
 	public void savePreference(MenuItem item) {
@@ -127,22 +138,23 @@ public class AddElement extends Activity implements OnItemSelectedListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// getActionBar().navigateUpFromSameTask(this);
+			finish();
 			return true;
+			
 		case R.id.save_element: {
-			int n = 10;
 
-			element = getFromLayout();
 
-			n = n + 1;
+			Element elementMOD = getFromLayout();
+
+
 
 			if (ACTION.equals("modify")) {
 				Long pp = (long) mNum + 1;
-				Boolean elCheck = elDBA.updateElement(pp, element.getName(),
-						element.getProfile(), element.getMaterial(),
-						element.getDoubleX1(), element.getDoubleY1(),
-						element.getDoubleZ1(), element.getDoubleX2(),
-						element.getDoubleY2(), element.getDoubleZ2());
+				Boolean elCheck = elDBA.updateElement(pp, elementMOD.getName(),
+						elementMOD.getProfile(), elementMOD.getMaterial(),
+						elementMOD.getDoubleX1(), elementMOD.getDoubleY1(),
+						elementMOD.getDoubleZ1(), elementMOD.getDoubleX2(),
+						elementMOD.getDoubleY2(), elementMOD.getDoubleZ2());
 				if (elCheck) {
 					Context context = getApplicationContext();
 					CharSequence text = "Element Saved, you can come back";
@@ -155,11 +167,11 @@ public class AddElement extends Activity implements OnItemSelectedListener {
 					Toast.makeText(context, text, duration).show();
 				}
 			} else if (ACTION.equals("create")) {
-				Long result = elDBA.createElement(element.getName(),
-						element.getProfile(), element.getMaterial(),
-						element.getDoubleX1(), element.getDoubleY1(),
-						element.getDoubleZ1(), element.getDoubleX2(),
-						element.getDoubleY2(), element.getDoubleZ2());
+				Long result = elDBA.createElement(elementMOD.getName(),
+						elementMOD.getProfile(), elementMOD.getMaterial(),
+						elementMOD.getDoubleX1(), elementMOD.getDoubleY1(),
+						elementMOD.getDoubleZ1(), elementMOD.getDoubleX2(),
+						elementMOD.getDoubleY2(), elementMOD.getDoubleZ2());
 				if (result == -1) {
 					Context context = getApplicationContext();
 					CharSequence text = "There was an error";
@@ -188,17 +200,13 @@ public class AddElement extends Activity implements OnItemSelectedListener {
 		EditText X2 = (EditText) findViewById(R.id.editX2);
 		EditText Y2 = (EditText) findViewById(R.id.editY2);
 		EditText Z2 = (EditText) findViewById(R.id.editZ2);
-		Spinner spinnerMat = (Spinner) findViewById(R.id.spinner2);
-		Spinner spinnerPro = (Spinner) findViewById(R.id.spinner1);
+	//	Spinner spinnerMat = (Spinner) findViewById(R.id.spinner2);
+	//	Spinner spinnerPro = (Spinner) findViewById(R.id.spinner1);
 
 		el.setName(name.getText().toString());
-
-		spinnerMat.setOnItemSelectedListener(this);
-		long matSP = selectedMAT;
-		spinnerPro.setOnItemSelectedListener(this);
-		long proSP = selectedPRO;
-		el.setMaterial(matName[(int) matSP]);
-		el.setProfile(proName[(int) proSP]);
+		
+		el.setMaterial(selectedMAT);
+		el.setProfile(selectedPRO);
 		el.setX1(X1.getText().toString());
 		el.setY1(Y1.getText().toString());
 		el.setZ1(Z1.getText().toString());
@@ -215,10 +223,10 @@ public class AddElement extends Activity implements OnItemSelectedListener {
 
 		switch (parent.getId()) {
 		case R.id.spinner2:
-			selectedMAT = parent.getItemIdAtPosition(pos);
+			selectedMAT = parent.getItemAtPosition(pos).toString();
 			break;
 		case R.id.spinner1:
-			selectedPRO = parent.getItemIdAtPosition(pos);
+			selectedPRO = parent.getItemAtPosition(pos).toString();
 			break;
 		}
 

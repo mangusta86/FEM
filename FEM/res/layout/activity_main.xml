@@ -14,38 +14,45 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
 
-    <fragment android:name="com.example.fem.ModelList"
-              android:id="@+id/headlines_fragment"
-              android:layout_weight="1"
-              android:layout_width="0dp"
-              android:layout_height="match_parent" />
-
-    <LinearLayout
-		android:layout_width="0dp"
+    <fragment
+        android:id="@+id/headlines_fragment"
+        android:name="com.example.fem.ModelList"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:orientation="vertical" >
+        android:layout_weight="1" />
 
-        <ImageButton
-            android:id="@+id/imageButton1"
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2" >
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/add2" />
+            android:layout_height="477dp"
+            android:orientation="vertical" >
 
-        <fragment
-            android:id="@+id/article_fragment"
-            android:name="com.example.fem.ModelFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="10"
+                android:scaleType="center"
+                android:src="@drawable/addimage" />
 
+            <fragment
+                android:id="@+id/article_fragment"
+                android:name="com.example.fem.ModelFragment"
+                android:layout_width="match_parent"
+                android:layout_height="887dp" />
 
-    </LinearLayout>
+        </LinearLayout>
 
-</LinearLayout>
-     <!--   -->
+    </ScrollView>
+
+</LinearLayout><!--  -->

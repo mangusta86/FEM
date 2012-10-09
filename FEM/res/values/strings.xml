@@ -1,16 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">FEM</string>
-    <string name="title_section3">Section 3</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section1">Section 1</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_set_property">SetProperty</string>
     <string name="title_activity_element">Element</string>
     <string name="title_activity_create_element">CreateElement</string>
     <string name="title_modello_detail">Modello Detail</string>
     <string name="title_modello_list">Modelli</string>
+    <string name="pick_shape">Scegli la forma del profilo</string>
+    <string name="title_activity_add_element">AddElement</string>
+    <string name="title_activity_add_profile">AddProfile</string>
+    <string name="title_activity_add_material">AddMaterial</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_item_list">Items</string>
+    <string name="unit_m2">m<sup>2</sup></string>
+    <string name="unit_m4">m<sup>4</sup></string>
 
     <string-array name="modelArray">
         <item>Elementi</item>
@@ -19,20 +24,18 @@
         <item>Carichi</item>
         <item>B.C.</item>
     </string-array>
-        <string-array name="modelArray2">
-        <item>Elem2enti</item>
-        <item>Profsdaili</item>
-        <item>Mateasdariali</item>
-        <item>Cariasdachi</item>
-        <item>Basd.C.</item>
+    <string-array name="shapeArray">
+        <item>Rettangolo</item>
+        <item>Cerchio</item>
+        <item>T</item>
+        <item>C</item>
+        <item>H</item>
     </string-array>
-
-    <string name="title_activity_add_element">AddElement</string>
-    <string name="title_activity_add_profile">AddProfile</string>
-    <string name="title_activity_add_material">AddMaterial</string>
-    <string name="title_item_detail">Item Detail</string>
-    <string name="title_item_list">Items</string>
-    <string name="unit_m2">m<sup>2</sup></string>
-    <string name="unit_m4">m<sup>4</sup></string>
+    <string-array name="loadArray">
+        <item>Carico distribuito</item>
+        <item>Carico concentrato</item>
+        <item>Momento distribuito</item>
+        <item>Momento concentrato</item>
+    </string-array>
 
 </resources>

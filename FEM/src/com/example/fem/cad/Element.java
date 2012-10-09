@@ -162,5 +162,21 @@ public class Element {
 	public Double getDoubleZ2() {
 		return this.Y2;
 	}
+	
+	
+	public boolean is3DElementConsistent(){
+		if (this.NAME!=null && this.PROFILE!=null && this.MATERIAL!=null 
+				&& this.X1!=null && this.X2!=null && this.Y1!=null && 
+				this.Y2!=null && this.Z1!=null && this.Z2!=null)
+			return true;
+		else return false;
+	}
 
+	public boolean is2DElementConsistent(){
+		if (this.NAME!=null && this.PROFILE!=null && this.MATERIAL!=null 
+				&& this.X1!=null && this.X2!=null && this.Y1!=null && 
+				this.Y2!=null)
+			return true;
+		else return false;
+	}
 }

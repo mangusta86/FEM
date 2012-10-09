@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.fem.DB.BCDBAdapter;
 import com.example.fem.DB.DBAdapter;
@@ -65,6 +67,12 @@ public class ModelActivity extends Activity implements
 			return;
 		}
 
+		ImageButton button = (ImageButton) findViewById(R.id.imageButton1);
+		button.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				startAddItem();
+			}
+		});
 	}
 
 	/**
@@ -166,6 +174,7 @@ public class ModelActivity extends Activity implements
 
 			Intent myIntent2 = new Intent(this, AddProfile.class);
 			myIntent2.putExtra("nItem", position);
+			myIntent2.putExtra("ACTION", "modify");
 			startActivityForResult(myIntent2, 0);
 
 			break;
@@ -176,6 +185,7 @@ public class ModelActivity extends Activity implements
 
 			Intent myIntent3 = new Intent(this, AddMaterial.class);
 			myIntent3.putExtra("nItem", position);
+			myIntent3.putExtra("ACTION", "modify");
 			startActivityForResult(myIntent3, 0);
 
 			break;
@@ -324,4 +334,38 @@ public class ModelActivity extends Activity implements
 		}
 		return true;
 	}
+
+	public void startAddItem() {
+
+		closeAllDatabases();
+		switch (menuLeft) {
+
+		case 0:
+			Intent toAddEl = new Intent(this, AddElement.class);
+			// myIntent.putExtra("nItem", position);
+			toAddEl.putExtra("ACTION", "create");
+			startActivityForResult(toAddEl, 0);
+			break;
+		case 1:
+			Intent toAddPro = new Intent(this, AddProfile.class);
+			// myIntent.putExtra("nItem", position);
+			toAddPro.putExtra("ACTION", "create");
+			startActivityForResult(toAddPro, 0);
+			break;
+		case 2:
+			Intent toAddMat = new Intent(this, AddMaterial.class);
+			// myIntent.putExtra("nItem", position);
+			toAddMat.putExtra("ACTION", "create");
+			startActivityForResult(toAddMat, 0);
+			break;
+
+		case 3:
+			break;
+		case 4:
+			break;
+
+		// Do something in response to button click
+		}
+	}
+
 }

@@ -1,7 +1,2 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_settings"
-        android:title="@string/menu_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never" />
-    <item android:id="@+id/menu_add" android:showAsAction="ifRoom|withText" android:enabled="true" android:visible="true" android:title="add" android:icon="@drawable/add_item"></item>
 </menu>
