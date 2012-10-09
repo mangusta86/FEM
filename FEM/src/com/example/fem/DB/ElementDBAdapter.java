@@ -1,6 +1,5 @@
 package com.example.fem.DB;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -20,7 +19,7 @@ public class ElementDBAdapter {
 	public static final String X2 = "x2";
 	public static final String Y2 = "y2";
 	public static final String Z2 = "z2";
-	
+
 	private static final String DATABASE_TABLE = "elements";
 
 	private DatabaseHelper mDbHelper;
@@ -29,7 +28,6 @@ public class ElementDBAdapter {
 	private final Context mCtx;
 
 	private static class DatabaseHelper extends SQLiteOpenHelper {
-
 
 		DatabaseHelper(Context context) {
 			super(context, DBAdapter.DATABASE_NAME, null,
@@ -98,7 +96,7 @@ public class ElementDBAdapter {
 
 	public long createElement(String name, String profile, String material,
 			Double x1, Double y1, Double z1, Double x2, Double y2, Double z2) {
-		
+
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(NAME, name);
 		initialValues.put(PROFILE, profile);
@@ -109,7 +107,7 @@ public class ElementDBAdapter {
 		initialValues.put(X2, x2);
 		initialValues.put(Y2, y2);
 		initialValues.put(Z2, z2);
-		
+
 		return this.mDb.insert(DATABASE_TABLE, null, initialValues);
 	}
 
@@ -130,19 +128,21 @@ public class ElementDBAdapter {
 	 * @return Cursor over all elements
 	 */
 	public Cursor getAllElements() {
-	
-		return this.mDb.query(DATABASE_TABLE, null, null, null, null, null, null);
+
+		return this.mDb.query(DATABASE_TABLE, null, null, null, null, null,
+				null);
 	}
-	
+
 	/**
-	 * Return a Cursor over the list of all elements in the database (query over names)
+	 * Return a Cursor over the list of all elements in the database (query over
+	 * names)
 	 * 
 	 * @return Cursor over all elements
 	 */
 	public Cursor getAllElementsNames() {
 
-	
-		return this.mDb.query(DATABASE_TABLE, new String[] { ROW_ID,NAME}, null, null, null, null, null);
+		return this.mDb.query(DATABASE_TABLE, new String[] { ROW_ID, NAME },
+				null, null, null, null, null);
 	}
 
 	/**
@@ -154,12 +154,12 @@ public class ElementDBAdapter {
 	 *             if element could not be found/retrieved
 	 */
 	public Cursor getElement(long rowId) throws SQLException {
-		
+
 		// new String[] { ROW_ID, NAME,PROFILE, MATERIAL }
 		Cursor mCursor =
 
-		this.mDb.query(true, DATABASE_TABLE,null, ROW_ID + "=" + rowId, null, null, null, null,
-				null);
+		this.mDb.query(true, DATABASE_TABLE, null, ROW_ID + "=" + rowId, null,
+				null, null, null, null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
 		}
@@ -176,7 +176,8 @@ public class ElementDBAdapter {
 	 * @return true if the note was successfully updated, false otherwise
 	 */
 	public boolean updateElement(long rowId, String name, String profile,
-			String material) {
+			String material, Double x1, Double y1, Double z1, Double x2,
+			Double y2, Double z2) {
 		ContentValues args = new ContentValues();
 		args.put(NAME, name);
 		args.put(PROFILE, profile);

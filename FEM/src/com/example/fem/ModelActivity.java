@@ -22,16 +22,15 @@ public class ModelActivity extends Activity implements
 		ModelList.OnHeadlineSelectedListener,
 		ModelFragment.OnItemSelectedListener {
 
-	
-	//instantiate all the variable used in the activity
-	public int menuLeft=-1;
+	// instantiate all the variable used in the activity
+	public int menuLeft = -1;
 	public String[] elName;
 	public String[] matName;
 	public String[] proName;
 	public String[] loadList;
 	public String[] bcList;
 	public Cursor C;
-	
+
 	/**
 	 * 
 	 */
@@ -41,7 +40,7 @@ public class ModelActivity extends Activity implements
 	ProfileDBAdapter proDBA = new ProfileDBAdapter(this);
 	LoadDBAdapter loadDBA = new LoadDBAdapter(this);
 	BCDBAdapter bcDBA = new BCDBAdapter(this);
-	
+
 	/**
 	 * 
 	 */
@@ -52,16 +51,16 @@ public class ModelActivity extends Activity implements
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);		
-			
+		super.onCreate(savedInstanceState);
+
 		DBA.open2();
-		
-		//inflate the main layout
-		//implement three pane layout for landscape?
-		
+
+		// inflate the main layout
+		// implement three pane layout for landscape?
+
 		setContentView(R.layout.activity_main);
-		
-		//actually don't remember why...
+
+		// actually don't remember why...
 		if (savedInstanceState != null) {
 			return;
 		}
@@ -74,9 +73,9 @@ public class ModelActivity extends Activity implements
 	@Override
 	public void onResume() {
 		super.onResume();
-		
+
 		openAllDatabases();
-		
+
 		C = elDBA.getAllElements();
 		elName = getArrayList(C, 1);
 		C = matDBA.getAllMaterials();
@@ -84,62 +83,52 @@ public class ModelActivity extends Activity implements
 		C = proDBA.getAllProfiles();
 		proName = getArrayList(C, 1);
 		C = loadDBA.getAllLoads();
-<<<<<<< HEAD
-		loadList = getArrayList(C, 1);
-		C = bcDBA.getAllBCs();
-		bcList = getArrayList(C, 1);
-=======
 		loadList = getArrayList(C, 0);
 		C = bcDBA.getAllBCs();
 		bcList = getArrayList(C, 0);
->>>>>>> other stuff
+
 	}
-	
+
 	@Override
 	public void onPause() {
 		super.onPause();
-		elDBA.close();
-		int i=0;
-		@SuppressWarnings("unused")
-		int c=9;
-		//closeAllDatabases();
 	}
-	
+
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		
+
 		closeAllDatabases();
 		DBA.close();
 	}
 
 	/**
 	 * Function called when selected an element from the first pane
+	 * 
 	 * @param position
 	 */
 	public void onArticleSelected(int position) {
 
 		ModelFragment fragDet = (ModelFragment) fragMAN
 				.findFragmentById(R.id.article_fragment);
-		
+
 		switch (position) {
 		case 0:
 
 			fragDet.updateArticleView(elName);
-		
+
 			break;
 		case 1:
-			 
+
 			fragDet.updateProfileView(profileCursorToList());
-	
 
 			break;
 		case 2:
-			
+
 			fragDet.updateArticleView(matDBA.getArrayMatName());
 			break;
 		case 3:
-			
+
 			fragDet.updateArticleView(loadList);
 			break;
 		case 4:
@@ -147,75 +136,56 @@ public class ModelActivity extends Activity implements
 			fragDet.updateArticleView(bcList);
 			break;
 		}
-		menuLeft=position;
+		menuLeft = position;
 
 	}
 
-	
 	/**
 	 * Function called when selected an element from the second pane
+	 * 
 	 * @param position
 	 */
 	public void onItemSelected(int position) {
 
-		int modelItem=menuLeft;
-		
-		switch (modelItem){
-		case 0:		//Element
-<<<<<<< HEAD
-	
-=======
->>>>>>> other stuff
+		int modelItem = menuLeft;
+
+		switch (modelItem) {
+		case 0: // Element
+
 			closeAllDatabases();
 
 			Intent myIntent = new Intent(this, AddElement.class);
-			myIntent.putExtra("nItem",position);
-<<<<<<< HEAD
+			myIntent.putExtra("nItem", position);
+			myIntent.putExtra("ACTION", "modify");
 			startActivityForResult(myIntent, 0);
-			
-			
-			//startActivity(myIntent);
-			//AddElementFragment fragDet = AddElementFragment.newInstance(position);
-			
-			//fragDet.show(fragMAN, null);
-			
-			
-			
+
 			break;
-		case 1:		//Profile
-			break;
-		case 2:		//Material
-			break;
-=======
-			startActivityForResult(myIntent, 0);						
-						
-			break;
-			
-		case 1:		//Profile
+
+		case 1: // Profile
 			closeAllDatabases();
 
 			Intent myIntent2 = new Intent(this, AddProfile.class);
-			myIntent2.putExtra("nItem",position);
+			myIntent2.putExtra("nItem", position);
 			startActivityForResult(myIntent2, 0);
-			
+
 			break;
-			
-		case 2:		//Material
-			
+
+		case 2: // Material
+
 			closeAllDatabases();
 
 			Intent myIntent3 = new Intent(this, AddMaterial.class);
-			myIntent3.putExtra("nItem",position);
+			myIntent3.putExtra("nItem", position);
 			startActivityForResult(myIntent3, 0);
-			
+
 			break;
->>>>>>> other stuff
-		case 3:		//Loads
+
+		case 3: // Loads
 			break;
-		case 4:		//BCs
+		case 4: // BCs
 			break;
 		}
-		
+
 		/*
 		 * // Create an instance of ExampleFragment ModelList firstFragment =
 		 * new ModelList();
@@ -281,17 +251,18 @@ public class ModelActivity extends Activity implements
 
 		return Array;
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-	
+
 	/**
 	 * Function called to open all the databases in sequence
 	 * 
 	 */
-	public void openAllDatabases(){
+	public void openAllDatabases() {
 
 		elDBA.open();
 		matDBA.open();
@@ -299,13 +270,13 @@ public class ModelActivity extends Activity implements
 		loadDBA.open();
 		bcDBA.open();
 	}
-	
+
 	/**
 	 * Function called to close all the databases in sequence
 	 * 
 	 */
-	public void closeAllDatabases(){
-		
+	public void closeAllDatabases() {
+
 		elDBA.close();
 		matDBA.close();
 		proDBA.close();
@@ -313,19 +284,21 @@ public class ModelActivity extends Activity implements
 		bcDBA.close();
 		//
 	}
-	
+
 	/**
 	 * Function called to pass data from the cursor to arraylist
+	 * 
 	 * @return arraylist
 	 */
-	public ArrayList<Profile> profileCursorToList(){
+	public ArrayList<Profile> profileCursorToList() {
 
 		ArrayList<Profile> mArrayList = new ArrayList<Profile>();
-		Cursor mCursor=proDBA.getAllProfiles();
-		
-		for(mCursor.moveToFirst();!mCursor.isAfterLast();mCursor.moveToNext()) {
-	    // The Cursor is now set to the right position
-			Profile profile =new Profile();
+		Cursor mCursor = proDBA.getAllProfiles();
+
+		for (mCursor.moveToFirst(); !mCursor.isAfterLast(); mCursor
+				.moveToNext()) {
+			// The Cursor is now set to the right position
+			Profile profile = new Profile();
 			profile.setName(mCursor.getString(1));
 			profile.setShape(mCursor.getString(2));
 			profile.setJx(mCursor.getString(4));
@@ -333,11 +306,10 @@ public class ModelActivity extends Activity implements
 			profile.setA(mCursor.getString(6));
 			mArrayList.add(profile);
 		}
-	mCursor.close();
-	return mArrayList;
+		mCursor.close();
+		return mArrayList;
 	}
-	
-	
+
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		/*

@@ -1,6 +1,5 @@
 package com.example.fem.DB;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -85,8 +84,8 @@ public class ProfileDBAdapter {
 	}
 
 	/**
-	 * Create a new profile. If the car is successfully created return the new rowId
-	 * for that car, otherwise return a -1 to indicate failure.
+	 * Create a new profile. If the car is successfully created return the new
+	 * rowId for that car, otherwise return a -1 to indicate failure.
 	 * 
 	 * @param name
 	 * @param shape
@@ -100,12 +99,12 @@ public class ProfileDBAdapter {
 	 * @param value4
 	 * @param value5
 	 * 
-	 * @return rowId or -1 if failed 
+	 * @return rowId or -1 if failed
 	 */
 
 	public long createProfile(String name, String shape, Double jp, Double jx,
 			Double jy, Double a, Double value1, Double value2, Double value3,
-			 Double value4, Double value5) {
+			Double value4, Double value5) {
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(NAME, name);
 		initialValues.put(SHAPE, shape);
@@ -138,9 +137,10 @@ public class ProfileDBAdapter {
 	 * @return Cursor over all profiles
 	 */
 	public Cursor getAllProfiles() {
-		
-		//new String[] { ROW_ID, NAME,SHAPE, VALUE1 }
-		return this.mDb.query(DATABASE_TABLE, null, null, null, null, null, ROW_ID +" ASC");
+
+		// new String[] { ROW_ID, NAME,SHAPE, VALUE1 }
+		return this.mDb.query(DATABASE_TABLE, null, null, null, null, null,
+				ROW_ID + " ASC");
 	}
 
 	/**
@@ -155,8 +155,8 @@ public class ProfileDBAdapter {
 		// new String[] { ROW_ID, NAME,SHAPE, VALUE1 }
 		Cursor mCursor =
 
-		this.mDb.query(true, DATABASE_TABLE,null, ROW_ID + "=" + rowId, null, null, null, null,
-				null);
+		this.mDb.query(true, DATABASE_TABLE, null, ROW_ID + "=" + rowId, null,
+				null, null, null, null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
 		}
@@ -180,9 +180,9 @@ public class ProfileDBAdapter {
 	 * 
 	 * @return true if the note was successfully updated, false otherwise
 	 */
-	public boolean updateElement(long rowId, String name, String shape, Double jp, Double jx,
-			Double jy, Double a, Double value1, Double value2, Double value3,
-			 Double value4, Double value5) {
+	public boolean updateElement(long rowId, String name, String shape,
+			Double jp, Double jx, Double jy, Double a, Double value1,
+			Double value2, Double value3, Double value4, Double value5) {
 		ContentValues args = new ContentValues();
 		args.put(NAME, name);
 		args.put(SHAPE, shape);
@@ -199,26 +199,28 @@ public class ProfileDBAdapter {
 		return this.mDb
 				.update(DATABASE_TABLE, args, ROW_ID + "=" + rowId, null) > 0;
 	}
+
 	/**
 	 * Return a String[] with all the profile names
 	 * 
 	 * @return String[] with all the profile names, if found
 	 */
-public String[] getArrayProName() {
-		
-		Cursor C = this.mDb.query(DATABASE_TABLE, new String[]{ROW_ID, NAME} ,
-				null, null, null, null, ROW_ID +" ASC");
-					
+	public String[] getArrayProName() {
+
+		Cursor C = this.mDb.query(DATABASE_TABLE,
+				new String[] { ROW_ID, NAME }, null, null, null, null, ROW_ID
+						+ " ASC");
+
 		int i = 0;
 		String[] proName = new String[C.getCount()];
 		if (C != null && C.moveToNext()) {
-				while (C.isAfterLast() == false) {
-					proName[i] = C.getString(1);
-					C.moveToNext();
-					i = i + 1;
-				}
+			while (C.isAfterLast() == false) {
+				proName[i] = C.getString(1);
+				C.moveToNext();
+				i = i + 1;
+			}
 		}
-				C.close();
+		C.close();
 
 		return proName;
 	}

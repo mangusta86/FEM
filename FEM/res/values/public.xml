@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+        <public id="0x7f020004" name="circleshape" 	type="drawable"></public>
+            
+        <public id="0x7f020006" name="cshape" 		type="drawable"></public>
+        <public id="0x7f020007" name="hshape" 		type="drawable"></public>
+        <public id="0x7f020019" name="tshape" 		type="drawable"></public>
+        
+   </resources>

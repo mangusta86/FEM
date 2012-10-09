@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -35,23 +34,20 @@ public class DBAdapter {
 			+ ProfileDBAdapter.VALUE1
 			+ " FLOAT(53),"
 			+ ProfileDBAdapter.VALUE2
-			+ " FLOAT(53)," 
-			+ ProfileDBAdapter.VALUE3 
-			+ " FLOAT(53)," 
-			+ ProfileDBAdapter.VALUE4 
-			+ " FLOAT(53)," 
-			+ ProfileDBAdapter.VALUE5 
-			+ " FLOAT(53)" 
-			+ ");"; 
-			//$NON-NLS-1$ //$NON-NLS-2$
+			+ " FLOAT(53),"
+			+ ProfileDBAdapter.VALUE3
+			+ " FLOAT(53),"
+			+ ProfileDBAdapter.VALUE4
+			+ " FLOAT(53)," + ProfileDBAdapter.VALUE5 + " FLOAT(53)" + ");";
+	//$NON-NLS-1$ //$NON-NLS-2$
 
 	private static final String CREATE_TABLE_ELEMENTS = "create table elements (_id integer primary key autoincrement, " //$NON-NLS-1$
-			+ ElementDBAdapter.NAME 
+			+ ElementDBAdapter.NAME
 			+ " TEXT," //$NON-NLS-1$
-			+ ElementDBAdapter.PROFILE 
+			+ ElementDBAdapter.PROFILE
 			+ " TEXT," //$NON-NLS-1$
-			+ ElementDBAdapter.MATERIAL 
-			+ " TEXT,"  //$NON-NLS-1$  //$NON-NLS-2$
+			+ ElementDBAdapter.MATERIAL
+			+ " TEXT," //$NON-NLS-1$  //$NON-NLS-2$
 			+ ElementDBAdapter.X1
 			+ " FLOAT(53),"
 			+ ElementDBAdapter.Y1
@@ -61,45 +57,31 @@ public class DBAdapter {
 			+ ElementDBAdapter.X2
 			+ " FLOAT(53),"
 			+ ElementDBAdapter.Y2
-			+ " FLOAT(53),"
-			+ ElementDBAdapter.Z2
-			+ " FLOAT(53)"
-			+ ");";
-	
+			+ " FLOAT(53)," + ElementDBAdapter.Z2 + " FLOAT(53)" + ");";
+
 	private static final String CREATE_TABLE_MATERIALS = "create table materials (_id integer primary key autoincrement, " //$NON-NLS-1$
-			+ MaterialDBAdapter.NAME 
+			+ MaterialDBAdapter.NAME
 			+ " TEXT," //$NON-NLS-1$
-			+ MaterialDBAdapter.YOUNG 
+			+ MaterialDBAdapter.YOUNG
 			+ " FLOAT(53)," //$NON-NLS-1$
-			+ MaterialDBAdapter.POISSON 
-			+ " FLOAT(53)," 
-			+ MaterialDBAdapter.DENSITY 
-			+ " FLOAT(53)"
-			+ ");"; //$NON-NLS-1$  //$NON-NLS-2$
+			+ MaterialDBAdapter.POISSON
+			+ " FLOAT(53),"
+			+ MaterialDBAdapter.DENSITY + " FLOAT(53)" + ");"; //$NON-NLS-1$  //$NON-NLS-2$
 
 	private static final String CREATE_TABLE_LOADS = "create table loads (_id integer primary key autoincrement, " //$NON-NLS-1$
-			+ LoadDBAdapter.TYPE 
+			+ LoadDBAdapter.TYPE
 			+ " TEXT," //$NON-NLS-1$
-			+ LoadDBAdapter.CP1 
+			+ LoadDBAdapter.CP1
 			+ " FLOAT(53)," //$NON-NLS-1$
-			+ LoadDBAdapter.CP2 
-			+ " FLOAT(53)," 
-			+ LoadDBAdapter.DIRECTION 
-			+ " TEXT," 
-			+ LoadDBAdapter.INTENSITY
-			+ " FLOAT(53)" 
-			+ ");"; //$NON-NLS-1$  //$NON-NLS-2$
-	
+			+ LoadDBAdapter.CP2
+			+ " FLOAT(53),"
+			+ LoadDBAdapter.DIRECTION
+			+ " TEXT," + LoadDBAdapter.INTENSITY + " FLOAT(53)" + ");"; //$NON-NLS-1$  //$NON-NLS-2$
+
 	private static final String CREATE_TABLE_BCS = "create table bcs (_id integer primary key autoincrement, " //$NON-NLS-1$
-			+ BCDBAdapter.ELEMENT 
-			+ " TEXT," //$NON-NLS-1$
-			+ BCDBAdapter.NODE
-			+ " TEXT," //$NON-NLS-1$
-			+ BCDBAdapter.DISP
-			+ " TEXT," 
-			+ BCDBAdapter.ROT
-			+ " TEXT"
-			+ ");"; //$NON-NLS-1$  //$NON-NLS-2$
+			+ BCDBAdapter.ELEMENT + " TEXT," //$NON-NLS-1$
+			+ BCDBAdapter.NODE + " TEXT," //$NON-NLS-1$
+			+ BCDBAdapter.DISP + " TEXT," + BCDBAdapter.ROT + " TEXT" + ");"; //$NON-NLS-1$  //$NON-NLS-2$
 	private final Context context;
 	private DatabaseHelper DBHelper;
 	private SQLiteDatabase db;

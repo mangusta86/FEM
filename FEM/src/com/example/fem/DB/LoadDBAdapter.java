@@ -1,7 +1,5 @@
 package com.example.fem.DB;
 
-
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -80,8 +78,8 @@ public class LoadDBAdapter {
 	}
 
 	/**
-	 * Create a new load. If the load is successfully created return the new rowId
-	 * for that load, otherwise return a -1 to indicate failure.
+	 * Create a new load. If the load is successfully created return the new
+	 * rowId for that load, otherwise return a -1 to indicate failure.
 	 * 
 	 * @param type
 	 * @param cp1
@@ -91,8 +89,8 @@ public class LoadDBAdapter {
 	 * @return rowId or -1 if failed
 	 */
 
-	public long createLoad(String type, Double cp1, Double cp2, String direction,
-			Double intensity) {
+	public long createLoad(String type, Double cp1, Double cp2,
+			String direction, Double intensity) {
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(TYPE, type);
 		initialValues.put(CP1, cp1);
@@ -119,9 +117,10 @@ public class LoadDBAdapter {
 	 * @return Cursor over all loads
 	 */
 	public Cursor getAllLoads() {
-		
-		//	new String[] { ROW_ID, NAME,YOUNG, POISSON }
-		return this.mDb.query(DATABASE_TABLE, null, null, null, null, null, null);
+
+		// new String[] { ROW_ID, NAME,YOUNG, POISSON }
+		return this.mDb.query(DATABASE_TABLE, null, null, null, null, null,
+				null);
 	}
 
 	/**
@@ -133,12 +132,12 @@ public class LoadDBAdapter {
 	 *             if load could not be found/retrieved
 	 */
 	public Cursor getLoad(long rowId) throws SQLException {
-		
-		//new String[] { ROW_ID, NAME,YOUNG, POISSON }
+
+		// new String[] { ROW_ID, NAME,YOUNG, POISSON }
 		Cursor mCursor =
 
-		this.mDb.query(true, DATABASE_TABLE, null, ROW_ID + "=" + rowId, null, null, null, null,
-				null);
+		this.mDb.query(true, DATABASE_TABLE, null, ROW_ID + "=" + rowId, null,
+				null, null, null, null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
 		}
@@ -156,8 +155,8 @@ public class LoadDBAdapter {
 	 * @param intensity
 	 * @return true if the note was successfully updated, false otherwise
 	 */
-	public boolean updateLoad(long rowId,String type, Double cp1, Double cp2, String direction,
-			Double intensity) {
+	public boolean updateLoad(long rowId, String type, Double cp1, Double cp2,
+			String direction, Double intensity) {
 		ContentValues args = new ContentValues();
 		args.put(TYPE, type);
 		args.put(CP1, cp1);
